@@ -2,28 +2,28 @@ import logging
 import sys
 from logtail import LogtailHandler
 
-
 token = 'yxMAFf3cq54awjjpYtehpcRJ'
 
-#get logger
+# Get logger
 logger = logging.getLogger()
 
-#create formatter
+# Create formatter
 formatter = logging.Formatter(
-    fmt="%(asctime)s - %(levelname)s - %(message)s "
+    fmt="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-#create handlers
+# Create handlers
 stream_handler = logging.StreamHandler(sys.stdout)
 file_handler = logging.FileHandler("app.log")
 better_stack_handler = LogtailHandler(source_token=token)
 
-#set formatter
+# Set formatter
 stream_handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
+better_stack_handler.setFormatter(formatter)
 
-# add handler to the logger
+# Add handler to the logger
 logger.handlers = [stream_handler, file_handler, better_stack_handler]
 
-#set log-level
+# Set log level
 logger.setLevel(logging.INFO)
